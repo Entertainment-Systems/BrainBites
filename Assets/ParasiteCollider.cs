@@ -10,10 +10,24 @@ public class ParasiteCollider : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-
             CollidedToEnemy = true;
             CollidedEnemy = collision.gameObject;
-            Debug.Log(CollidedEnemy);
+            Debug.Log("Get it off me");
+            HideMe();
         }
+    }
+
+    private void HideMe()
+    {
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        //gameObject.GetComponent<Collider2D>().enabled = false;
+    }
+
+    public void returnMe()
+    {
+        gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        //gameObject.GetComponent<Collider2D>().enabled = true;
+        if(CollidedEnemy !=null)
+            transform.position = CollidedEnemy.transform.position;
     }
 }

@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
                 player.gameObject.GetComponent<ParasiteCollider>().CollidedToEnemy = false;
                 player = player.gameObject.GetComponent<ParasiteCollider>().CollidedEnemy;
                 GetPlayerBody();
-          
             }
         }
     }
@@ -35,10 +34,11 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         //Controls
-        if (Input.GetButton("Fire1"))
-        {
-            rb2D.AddForce(transform.right * thrust);
-        }
+        float inputX = Input.GetAxis("Horizontal");
+
+        Vector2 direction = new Vector2(Input.GetAxis("Horizontal"), 0);
+        rb2D.AddForce(direction * thrust);
+        
         if (Input.GetButton("Fire2"))
         {
             ReturnToParasite();
@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
         if (player.gameObject.GetComponent<ParasiteCollider>() != null)
         {
             parasite = player.gameObject.GetComponent<ParasiteCollider>();
+            parasite.returnMe();
         }
         else
         {
@@ -70,5 +71,4 @@ public class PlayerController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         GetPlayerBody();
     }
-
 }
