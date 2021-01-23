@@ -630,3 +630,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollidedToEnemy: 0
+  CollidedEnemy: {fileID: 0}
