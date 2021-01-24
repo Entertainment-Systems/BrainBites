@@ -1,19 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ParasiteCollider : MonoBehaviour
 {
     public bool CollidedToEnemy = false;
     public GameObject CollidedEnemy;
+    [SerializeField] private AudioClip[] clips;
+    [SerializeField] private LayerMask finishLayer;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
             CollidedToEnemy = true;
             CollidedEnemy = collision.gameObject;
-            Debug.Log("Get it off me");
+            //Debug.Log("Get it off me");
             HideMe();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        print("we done here "+ collision.transform.gameObject.layer + " " + finishLayer. value);
+        if (collision.transform.gameObject.layer == finishLayer.value)
+        {
+            print("we done here 2");
+            SceneManager.SetActiveScene(SceneManager.GetSceneAt(SceneManager.GetActiveScene().buildIndex));
         }
     }
 
@@ -22,6 +35,7 @@ public class ParasiteCollider : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
         //gameObject.GetComponent<BoxCollider2D>().enabled = false;
         transform.position = new Vector3(0, -100, 0);
+        GetComponent<AudioSource>().PlayOneShot(clips[0]);
         if (CollidedEnemy != null)
             StartCoroutine(CollidedEnemy.GetComponent<EnemyAnimationHandler>().takeover());
     }

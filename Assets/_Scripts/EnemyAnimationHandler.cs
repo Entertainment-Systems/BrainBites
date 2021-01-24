@@ -31,7 +31,7 @@ public class EnemyAnimationHandler : MonoBehaviour
         m_RB.bodyType = RigidbodyType2D.Static;
         m_Anim.SetBool("takeover", true);
         yield return new WaitForEndOfFrame();
-        m_RB.bodyType = RigidbodyType2D.Dynamic;
+        //m_RB.bodyType = RigidbodyType2D.Dynamic;
         m_Anim.SetBool("takeover", false);
     }
 
