@@ -7,7 +7,7 @@ public class Attributes : MonoBehaviour
     [Header("Physics")]
     public float speed;
     public float maxSpeed;
-    public float jumpHeight;
+    public float jumpSpeed;
 
     [Header("")]
     public float health;
