@@ -10,7 +10,7 @@ public class FieldOfViewEditor : Editor
     {
         EnemyAI enemyAI = (EnemyAI)target;
         Handles.color = Color.white;
-        Handles.DrawWireArc(enemyAI.transform.position, Vector3.forward, Vector3.right, 360, enemyAI.viewRadius);
+        Handles.DrawWireArc(enemyAI.transform.position, Vector3.forward, Vector2.right, 360, enemyAI.viewRadius);
         Vector3 viewAngleA = enemyAI.DirFromAngle(-enemyAI.viewAngle / 2, false);
         Vector3 viewAngleB = enemyAI.DirFromAngle(enemyAI.viewAngle / 2, false);
 

@@ -31,7 +31,7 @@ public class EnemyAI : MonoBehaviour
             Transform target = targetsinViewRadius.transform;
             Vector3 dirToTarget = (target.position - transform.position).normalized;
 
-            if (Vector2.Angle(transform.up, dirToTarget) < viewAngle / 2)
+            if (Vector2.Angle(transform.right, dirToTarget) < viewAngle / 2)
             {
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
                 if (!Physics2D.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
@@ -51,7 +51,7 @@ public class EnemyAI : MonoBehaviour
     void FixedUpdate()
     {
         FindVisibleTarget();
-        Vector3 forward = transform.forward;
-        float angle = Vector3.Angle(transform.position, forward);
+
+
     }
 }
