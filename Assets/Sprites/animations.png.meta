@@ -158,6 +158,15 @@ TextureImporter:
   - first:
       213: 3372820627072491040
     second: animations_51
+<<<<<<< Updated upstream
+=======
+  - first:
+      213: -4622993607925696388
+    second: animations_52
+  - first:
+      213: -8110717940348207882
+    second: animations_53
+>>>>>>> Stashed changes
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1313,7 +1322,11 @@ TextureImporter:
         width: 5
         height: 4
       alignment: 0
+<<<<<<< Updated upstream
       pivot: {x: 0.5, y: 0.5}
+=======
+      pivot: {x: 0, y: 0}
+>>>>>>> Stashed changes
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1329,12 +1342,21 @@ TextureImporter:
       name: animations_51
       rect:
         serializedVersion: 2
+<<<<<<< Updated upstream
         x: 582
         y: 336
         width: 4
         height: 4
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
+=======
+        x: 581
+        y: 336
+        width: 5
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+>>>>>>> Stashed changes
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
