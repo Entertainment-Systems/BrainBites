@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
+    private Attributes attribute;
+
     Rigidbody2D rb2D;
     public float viewRadius;
     public float viewAngle;
@@ -12,6 +14,13 @@ public class EnemyAI : MonoBehaviour
     public float  meshResolution;
 
     private enum Enemy { attack, wander, patrol, lookAround }
+
+    private void Start()
+    {
+        attribute = GetComponent<Attributes>();
+        rb2D = GetComponent<Rigidbody2D>();
+        StartCoroutine(randomDirection(2));
+    }
 
     public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
     {
@@ -52,6 +61,26 @@ public class EnemyAI : MonoBehaviour
     {
         FindVisibleTarget();
 
+    }
 
+    private IEnumerator randomDirection(float waitTime)
+    {
+        Vector2 direction = new Vector2(0, 0);
+        while (true)
+        {
+            int random = Random.Range(0, 2);
+            if(random == 0) 
+            {
+                direction = new Vector2(-1, 0);
+            } 
+            else
+            {
+                direction = new Vector2(1, 0);
+            }
+
+            rb2D.velocity = new Vector2(direction.x, rb2D.velocity.y);
+
+            yield return new WaitForSeconds(waitTime);
+        }
     }
 }
