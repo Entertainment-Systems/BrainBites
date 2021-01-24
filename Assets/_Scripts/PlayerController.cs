@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI infoTextbox;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform groundCheck;
+    [SerializeField] private LevelManager lm;
     private Rigidbody2D rb2D;
     private ParasiteCollider parasite;
     private Attributes attribute;
@@ -108,6 +109,9 @@ public class PlayerController : MonoBehaviour
         //Debug.Log("we running");
         player = GameObject.FindGameObjectWithTag("Player");
         GetPlayerBody();
+        lm.enemiesLeft--;
+        if (lm.enemiesLeft == 0)
+            lm.unlockExit();
     }
 
     private void UpdateText()

@@ -23,10 +23,10 @@ public class ParasiteCollider : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         print("we done here "+ collision.transform.gameObject.layer + " " + finishLayer. value);
-        if (collision.transform.gameObject.layer == finishLayer.value)
+        if (collision.transform.gameObject.name == "OpenExit")
         {
             print("we done here 2");
-            SceneManager.SetActiveScene(SceneManager.GetSceneAt(SceneManager.GetActiveScene().buildIndex));
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 
