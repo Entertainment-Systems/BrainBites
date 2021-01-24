@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject player;
     private Rigidbody2D rb2D;
     private ParasiteCollider parasite;
+    private Attributes attribute;
 
     private float thrust = 10.0f;
 
@@ -37,7 +38,7 @@ public class PlayerController : MonoBehaviour
         float inputX = Input.GetAxis("Horizontal");
 
         Vector2 direction = new Vector2(Input.GetAxis("Horizontal"), 0);
-        rb2D.AddForce(direction * thrust);
+        rb2D.AddForce(direction * attribute.speed);
         
         if (Input.GetButton("Fire2"))
         {
@@ -51,6 +52,7 @@ public class PlayerController : MonoBehaviour
     private void GetPlayerBody()
     {
         rb2D = player.GetComponent<Rigidbody2D>();
+        attribute = player.GetComponent<Attributes>();
         if (player.gameObject.GetComponent<ParasiteCollider>() != null)
         {
             parasite = player.gameObject.GetComponent<ParasiteCollider>();
