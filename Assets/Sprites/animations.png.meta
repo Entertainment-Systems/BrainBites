@@ -158,15 +158,6 @@ TextureImporter:
   - first:
       213: 3372820627072491040
     second: animations_51
-<<<<<<< Updated upstream
-=======
-  - first:
-      213: -4622993607925696388
-    second: animations_52
-  - first:
-      213: -8110717940348207882
-    second: animations_53
->>>>>>> Stashed changes
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -201,7 +192,7 @@ TextureImporter:
     mipBias: -100
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -210,7 +201,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 48
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -222,7 +213,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
-  applyGammaDecoding: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -1317,16 +1308,12 @@ TextureImporter:
       name: animations_50
       rect:
         serializedVersion: 2
-        x: 576
+        x: 581
         y: 336
         width: 5
         height: 4
       alignment: 0
-<<<<<<< Updated upstream
-      pivot: {x: 0.5, y: 0.5}
-=======
       pivot: {x: 0, y: 0}
->>>>>>> Stashed changes
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1338,40 +1325,10 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: animations_51
-      rect:
-        serializedVersion: 2
-<<<<<<< Updated upstream
-        x: 582
-        y: 336
-        width: 4
-        height: 4
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-=======
-        x: 581
-        y: 336
-        width: 5
-        height: 4
-      alignment: 0
-      pivot: {x: 0, y: 0}
->>>>>>> Stashed changes
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 02e14c78d7aaece20800000000000000
-      internalID: 3372820627072491040
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: ccd8a640a97a6b644ac764a649cfe7ee
     internalID: 0
     vertices: []
     indices: 
