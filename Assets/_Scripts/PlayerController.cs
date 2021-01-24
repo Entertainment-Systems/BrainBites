@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
     private void UpdateText()
     {
         infoTextbox.SetText(
-            "<#" + ColorUtility.ToHtmlStringRGB(attribute.textColor) + ">" 
+            "<#" + ColorUtility.ToHtmlStringRGB(attribute.textColor) + ">"
             + "<size=48><u><b><i>" + attribute.targetName + "</size=48></u></b></i></color>"
             + "<br>" +
             attribute.description);

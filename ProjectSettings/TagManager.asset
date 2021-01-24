@@ -14,8 +14,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Player
+  - Obsticle
   - 
   - 
   - 
@@ -53,4 +53,7 @@ TagManager:
     locked: 0
   - name: HUD
     uniqueID: 2008138017
+    locked: 0
+  - name: Obsticle
+    uniqueID: 1690589289
     locked: 0
