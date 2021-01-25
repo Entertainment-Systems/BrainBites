@@ -19,7 +19,7 @@ public class EnemyAI : MonoBehaviour
     public LayerMask playerMask;
     public LayerMask obstacleMask;
 
-    private enum EnemyType { blind, badLegs, big}
+    private enum EnemyType { blind, badLegs, spin, speen, noMovement}
     [SerializeField] private EnemyType enemyType;
 
     private void Awake()
@@ -46,10 +46,15 @@ public class EnemyAI : MonoBehaviour
             case EnemyType.badLegs:
                 StartCoroutine(BadLegsMovement(attribute.repeatRate));
                 break;
+            case EnemyType.spin:
+                StartCoroutine(SpinMovement(attribute.repeatRate));
+                break;
+            case EnemyType.speen:
+                StartCoroutine(SpeenMovement(attribute.repeatRate));
+                break;
             default:
                 break;
         }
-        
     }
 
     public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
@@ -82,7 +87,6 @@ public class EnemyAI : MonoBehaviour
             }
         }
     }
-
  
     void FixedUpdate()
     {
@@ -123,6 +127,25 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    private IEnumerator SpinMovement(float spinSpeed)
+
+    {
+        while (true)
+        {
+            visionLight.transform.Rotate(new Vector3(0, 0, 10));
+            yield return new WaitForSeconds(spinSpeed);
+        }
+    }
+
+    private IEnumerator SpeenMovement(float spinSpeed)
+
+    {
+        while (true)
+        {
+            transform.Rotate(new Vector3(0, 0, 10));
+            yield return new WaitForSeconds(spinSpeed);
+        }
+    }
 
     public void killPlayer()
     {

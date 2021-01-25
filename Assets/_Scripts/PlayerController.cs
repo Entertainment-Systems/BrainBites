@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour
         {
             player.transform.Rotate(new Vector3(0, 180, 0));
             facingRight = false;
+
         }
         else if (direction.x > 0 && facingRight == false)
         {
@@ -97,7 +98,7 @@ public class PlayerController : MonoBehaviour
         groundCheck = player.transform.GetChild(0);
         rb2D = player.GetComponent<Rigidbody2D>();
         attribute = player.GetComponent<Attributes>();
-
+        
         TargetVision = attribute.vision;
 
         facingRight = player.transform.rotation.eulerAngles.y == 180 ? false : true;
