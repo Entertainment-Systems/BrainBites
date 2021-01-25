@@ -66,6 +66,13 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Z) && grounded)
             rb2D.velocity = new Vector2(rb2D.velocity.x, attribute.jumpSpeed);
+        //rb2D.AddForce(new Vector2(0, attribute.jumpSpeed), ForceMode2D.Impulse);
+
+        if (rb2D.velocity.y < 1)
+            rb2D.gravityScale = 3;
+        else
+            rb2D.gravityScale = 1;
+
 
         if (Input.GetKey(KeyCode.X) && player.tag == "Enemy")
             {
@@ -103,7 +110,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void ReturnToParasite()
     {
-        Debug.Log("we running");
+        //Debug.Log("we running");
         player = GameObject.FindGameObjectWithTag("Player");
         GetPlayerBody();
     }
