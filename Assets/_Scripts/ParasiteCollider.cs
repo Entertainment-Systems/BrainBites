@@ -22,10 +22,8 @@ public class ParasiteCollider : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print("we done here "+ collision.transform.gameObject.layer + " " + finishLayer. value);
         if (collision.transform.gameObject.name == "OpenExit")
         {
-            print("we done here 2");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
@@ -46,6 +44,7 @@ public class ParasiteCollider : MonoBehaviour
         //gameObject.GetComponent<BoxCollider2D>().enabled = true;
         if (CollidedEnemy != null)
         {
+            GetComponent<AudioSource>().PlayOneShot(clips[1]);
             CollidedEnemy.GetComponent<EnemyAnimationHandler>().die();
             transform.position = CollidedEnemy.transform.position;
             Destroy(CollidedEnemy.GetComponent<Rigidbody2D>());

@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour
 
     void takeDamage()
     {
-        if(TargetVision > .01f)
+        if(TargetVision > .1f)
             TargetVision -= 0.5f;
     }
 

@@ -11,7 +11,8 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (enemiesLeft == 0)
+            unlockExit();
     }
 
     public void unlockExit()
