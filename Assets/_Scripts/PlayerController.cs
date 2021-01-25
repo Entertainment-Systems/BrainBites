@@ -19,9 +19,12 @@ public class PlayerController : MonoBehaviour
     private bool facingRight = true;
     private bool grounded = true;
 
+    private float TargetVision;
+
     void Start()
     {
         light2d = haloLight.GetComponent<Light2D>();
+        InvokeRepeating("takeDamage", 0.5f, 0.3f);
         GetPlayerBody();
     }
 
@@ -50,7 +53,7 @@ public class PlayerController : MonoBehaviour
         Vector2 direction = new Vector2(Input.GetAxis("Horizontal"), 0);
         rb2D.velocity = new Vector2(attribute.speed * direction.x, rb2D.velocity.y);
 
-        light2d.pointLightOuterRadius = attribute.vision;
+        light2d.pointLightOuterRadius = TargetVision;
 
         if (direction.x < 0 && facingRight == true)
         {
@@ -90,6 +93,8 @@ public class PlayerController : MonoBehaviour
         rb2D = player.GetComponent<Rigidbody2D>();
         attribute = player.GetComponent<Attributes>();
 
+        TargetVision = attribute.vision;
+
         facingRight = player.transform.rotation.eulerAngles.y == 180 ? false : true;
 
         if (player.gameObject.GetComponent<ParasiteCollider>() != null)
@@ -126,6 +131,12 @@ public class PlayerController : MonoBehaviour
             + "<size=48><u><b><i>" + attribute.targetName + "</size=48></u></b></i></color>"
             + "<br>" +
             attribute.description);
+    }
+
+    void takeDamage()
+    {
+        if(TargetVision > .01f)
+            TargetVision -= 0.5f;
     }
 
     private void OnDrawGizmos()
