@@ -12,13 +12,15 @@ public class EnemyAI : MonoBehaviour
     private Rigidbody2D rb2D;
     private Light2D light2d;
 
+    [System.NonSerialized]
     public float viewRadius;
+
     public float viewAngle;
     public LayerMask playerMask;
     public LayerMask obstacleMask;
-    public float  meshResolution;
 
-    private enum Enemy { attack, wander, patrol, lookAround }
+    private enum EnemyType { blind, badLegs, big}
+    [SerializeField] private EnemyType enemyType;
 
     private void Awake()
     {
@@ -34,7 +36,20 @@ public class EnemyAI : MonoBehaviour
         light2d.pointLightInnerAngle = viewAngle;
         light2d.pointLightOuterAngle = viewAngle*2;
         light2d.color = attribute.textColor;
-        StartCoroutine(randomDirection(2));
+
+
+        switch(enemyType)
+        {
+            case EnemyType.blind:
+                StartCoroutine(blindMovement(attribute.repeatRate));
+                break;
+            case EnemyType.badLegs:
+                StartCoroutine(BadLegsMovement(attribute.repeatRate));
+                break;
+            default:
+                break;
+        }
+        
     }
 
     public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
@@ -75,7 +90,7 @@ public class EnemyAI : MonoBehaviour
 
     }
 
-    private IEnumerator randomDirection(float waitTime)
+    private IEnumerator blindMovement(float waitTime)
     {
         Vector2 direction = new Vector2(0, 0);
         while (true)
@@ -97,6 +112,17 @@ public class EnemyAI : MonoBehaviour
             yield return new WaitForSeconds(waitTime);
         }
     }
+
+    private IEnumerator BadLegsMovement(float waitTime)
+    {
+        while (true)
+        {
+            transform.Rotate(new Vector3(0, 180, 0));
+
+            yield return new WaitForSeconds(waitTime);
+        }
+    }
+
 
     public void killPlayer()
     {

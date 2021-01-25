@@ -23,8 +23,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         light2d = haloLight.GetComponent<Light2D>();
-        InvokeRepeating("takeDamage", 0.5f, 0.3f);
         GetPlayerBody();
+        InvokeRepeating("takeDamage", 0.5f, attribute.DeathSpeed);
+        
     }
 
     private void Update()
