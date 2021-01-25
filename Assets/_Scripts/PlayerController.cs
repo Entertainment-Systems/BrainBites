@@ -36,8 +36,13 @@ public class PlayerController : MonoBehaviour
             {
                 player.gameObject.GetComponent<ParasiteCollider>().CollidedToEnemy = false;
                 player = player.gameObject.GetComponent<ParasiteCollider>().CollidedEnemy;
+                
                 if (player.gameObject.GetComponent<EnemyAI>() != null)
+                {
                     Destroy(player.gameObject.GetComponent<EnemyAI>());
+                    Destroy(player.gameObject.GetComponentInChildren<Light2D>());
+                }
+                    
                 GetPlayerBody();
             }
         }
@@ -131,8 +136,8 @@ public class PlayerController : MonoBehaviour
 
     void takeDamage()
     {
-        if(TargetVision > .01f)
-            TargetVision -= 0.5f;
+        if(TargetVision > .6f)
+            TargetVision -= 0.1f;
     }
 
     private void OnDrawGizmos()
