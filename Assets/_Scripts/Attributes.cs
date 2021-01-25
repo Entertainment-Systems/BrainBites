@@ -11,7 +11,7 @@ public class Attributes : MonoBehaviour
 
     [Header("")]
     public float health;
-    [Range(0, 20)]
+    [Range(0, 10)]
     public float vision;
 
     [Header("")]
