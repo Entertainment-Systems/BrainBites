@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 375891835823262277}
   - component: {fileID: 375891835823262276}
   - component: {fileID: 375891835823262274}
-  - component: {fileID: 375891835823262275}
   - component: {fileID: 375891835823262272}
+  - component: {fileID: 1876314178358552987}
+  - component: {fileID: 375891835823262275}
   m_Layer: 0
   m_Name: Blind Enemy
   m_TagString: Enemy
@@ -34,6 +35,7 @@ Transform:
   m_LocalScale: {x: 1.323, y: 1.323, z: 1.323}
   m_Children:
   - {fileID: 375891837013227412}
+  - {fileID: 595949230230236678}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -154,28 +156,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &375891835823262275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 375891835823262329}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 682a7683e127cbe48b06c46305268c13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  maxSpeed: 2
-  jumpSpeed: 0
-  health: 0
-  vision: 0
-  textColor:
-    serializedVersion: 2
-    rgba: 0
-  targetName: 
-  description: 
 --- !u!114 &375891835823262272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +169,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   freeze: 0
+--- !u!114 &1876314178358552987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375891835823262329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36d4a450e4c61664e9f917f4ff7d6dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visionLight: {fileID: 8028686399824852381}
+  viewAngle: 80
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 256
+  enemyType: 0
+--- !u!114 &375891835823262275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375891835823262329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 682a7683e127cbe48b06c46305268c13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  maxSpeed: 3
+  jumpSpeed: 5
+  vision: 0.6
+  repeatRate: 0.937
+  DeathSpeed: 0.1
+  textColor:
+    serializedVersion: 2
+    rgba: 255
+  targetName: 
+  description: 
 --- !u!1 &375891837013227415
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,3 +243,75 @@ Transform:
   m_Father: {fileID: 375891835823262279}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8028686399824852381
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 595949230230236678}
+  - component: {fileID: 8011776566511509811}
+  m_Layer: 0
+  m_Name: Point Light 2D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &595949230230236678
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8028686399824852381}
+  m_LocalRotation: {x: -0, y: -0, z: -0.70710576, w: 0.70710784}
+  m_LocalPosition: {x: -0.065, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 375891835823262279}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90.00001}
+--- !u!114 &8011776566511509811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8028686399824852381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LightType: 3
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.2
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_LightVolumeOpacity: 0.2
+  m_ApplyToSortingLayers: 8d8011fb
+  m_LightCookieSprite: {fileID: 0}
+  m_UseNormalMap: 1
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_ShadowIntensity: 0
+  m_ShadowVolumeIntensity: 0
+  m_PointLightInnerAngle: 24.3
+  m_PointLightOuterAngle: 141
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 1
+  m_PointLightDistance: 3
+  m_PointLightQuality: 1
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}

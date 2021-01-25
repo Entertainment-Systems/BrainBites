@@ -24,8 +24,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         light2d = haloLight.GetComponent<Light2D>();
-        InvokeRepeating("takeDamage", 0.5f, 0.3f);
         GetPlayerBody();
+        InvokeRepeating("takeDamage", 0.5f, attribute.DeathSpeed);
+        
     }
 
     private void Update()
@@ -37,8 +38,13 @@ public class PlayerController : MonoBehaviour
             {
                 player.gameObject.GetComponent<ParasiteCollider>().CollidedToEnemy = false;
                 player = player.gameObject.GetComponent<ParasiteCollider>().CollidedEnemy;
+                
                 if (player.gameObject.GetComponent<EnemyAI>() != null)
+                {
                     Destroy(player.gameObject.GetComponent<EnemyAI>());
+                    Destroy(player.gameObject.GetComponentInChildren<Light2D>());
+                }
+                    
                 GetPlayerBody();
             }
         }
@@ -59,6 +65,7 @@ public class PlayerController : MonoBehaviour
         {
             player.transform.Rotate(new Vector3(0, 180, 0));
             facingRight = false;
+
         }
         else if (direction.x > 0 && facingRight == false)
         {
@@ -92,7 +99,7 @@ public class PlayerController : MonoBehaviour
         groundCheck = player.transform.GetChild(0);
         rb2D = player.GetComponent<Rigidbody2D>();
         attribute = player.GetComponent<Attributes>();
-
+        
         TargetVision = attribute.vision;
 
         facingRight = player.transform.rotation.eulerAngles.y == 180 ? false : true;
@@ -135,8 +142,8 @@ public class PlayerController : MonoBehaviour
 
     void takeDamage()
     {
-        if(TargetVision > .1f)
-            TargetVision -= 0.5f;
+        if(TargetVision > .6f)
+            TargetVision -= 0.1f;
     }
 
     private void OnDrawGizmos()

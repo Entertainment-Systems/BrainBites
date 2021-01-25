@@ -9,12 +9,16 @@ public class Attributes : MonoBehaviour
     public float maxSpeed;
     public float jumpSpeed;
 
-    [Header("")]
-    public float health;
     [Range(0, 10)]
     public float vision;
+    [Range(0, 3)]
+    public float repeatRate = 2f;
 
-    [Header("")]
+    [Header("How Quickly Death approaches")]
+    [Range(0, 1)]
+    public float DeathSpeed =.1f;
+
+    [Header("Characteristics")]
     public Color32 textColor;
     public string targetName;
     [TextArea]

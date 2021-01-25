@@ -1,25 +1,60 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class EnemyAI : MonoBehaviour
 {
-    private Attributes attribute;
+    [SerializeField] private GameObject visionLight;
 
-    Rigidbody2D rb2D;
+    private Attributes attribute;
+    private Rigidbody2D rb2D;
+    private Light2D light2d;
+
+    [System.NonSerialized]
     public float viewRadius;
+
     public float viewAngle;
     public LayerMask playerMask;
     public LayerMask obstacleMask;
-    public float  meshResolution;
 
-    private enum Enemy { attack, wander, patrol, lookAround }
+    private enum EnemyType { blind, badLegs, spin, speen, noMovement}
+    [SerializeField] private EnemyType enemyType;
 
-    private void Start()
+    private void Awake()
     {
         attribute = GetComponent<Attributes>();
         rb2D = GetComponent<Rigidbody2D>();
-        StartCoroutine(randomDirection(2));
+        light2d = visionLight.GetComponent<Light2D>();
+
+    }
+    private void Start()
+    {
+        viewRadius = attribute.vision;
+        light2d.pointLightOuterRadius = viewRadius;
+        light2d.pointLightInnerAngle = viewAngle;
+        light2d.pointLightOuterAngle = viewAngle*2;
+        light2d.color = attribute.textColor;
+
+
+        switch(enemyType)
+        {
+            case EnemyType.blind:
+                StartCoroutine(blindMovement(attribute.repeatRate));
+                break;
+            case EnemyType.badLegs:
+                StartCoroutine(BadLegsMovement(attribute.repeatRate));
+                break;
+            case EnemyType.spin:
+                StartCoroutine(SpinMovement(attribute.repeatRate));
+                break;
+            case EnemyType.speen:
+                StartCoroutine(SpeenMovement(attribute.repeatRate));
+                break;
+            default:
+                break;
+        }
     }
 
     public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
@@ -45,25 +80,21 @@ public class EnemyAI : MonoBehaviour
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
                 if (!Physics2D.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
                 {
-                    Debug.Log("I see you motherfucker");
-                    Debug.DrawRay(transform.position, dirToTarget, Color.green);
+                    Destroy(targetsinViewRadius);
+                    killPlayer();
+
                 }
             }
         }
     }
-
-    private void Awake()
-    {
-        rb2D = GetComponent<Rigidbody2D>();
-    }
-
+ 
     void FixedUpdate()
     {
         FindVisibleTarget();
 
     }
 
-    private IEnumerator randomDirection(float waitTime)
+    private IEnumerator blindMovement(float waitTime)
     {
         Vector2 direction = new Vector2(0, 0);
         while (true)
@@ -72,15 +103,53 @@ public class EnemyAI : MonoBehaviour
             if(random == 0) 
             {
                 direction = new Vector2(-1, 0);
-            } 
+                transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+            }
             else
             {
                 direction = new Vector2(1, 0);
+                transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
             }
 
             rb2D.velocity = new Vector2(direction.x, rb2D.velocity.y);
 
             yield return new WaitForSeconds(waitTime);
         }
+    }
+
+    private IEnumerator BadLegsMovement(float waitTime)
+    {
+        while (true)
+        {
+            transform.Rotate(new Vector3(0, 180, 0));
+
+            yield return new WaitForSeconds(waitTime);
+        }
+    }
+
+    private IEnumerator SpinMovement(float spinSpeed)
+
+    {
+        while (true)
+        {
+            visionLight.transform.Rotate(new Vector3(0, 0, 10));
+            yield return new WaitForSeconds(spinSpeed);
+        }
+    }
+
+    private IEnumerator SpeenMovement(float spinSpeed)
+
+    {
+        while (true)
+        {
+            transform.Rotate(new Vector3(0, 0, 10));
+            yield return new WaitForSeconds(spinSpeed);
+        }
+    }
+
+    public void killPlayer()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Debug.Log("I see you motherfucker");
     }
 }
