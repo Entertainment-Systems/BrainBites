@@ -9,6 +9,13 @@ public class ParasiteCollider : MonoBehaviour
     public GameObject CollidedEnemy;
     [SerializeField] private AudioClip[] clips;
     [SerializeField] private LayerMask finishLayer;
+    private LevelManager lm;
+
+    private void Start()
+    {
+        lm = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
@@ -24,7 +31,7 @@ public class ParasiteCollider : MonoBehaviour
     {
         if (collision.transform.gameObject.name == "OpenExit")
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            lm.nextLevel();
         }
     }
 

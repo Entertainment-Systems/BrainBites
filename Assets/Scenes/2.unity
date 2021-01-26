@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -188,31 +188,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8004078469791906698, guid: fdc0a60f03d34764c97c36bdb6c7fb33,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-    - target: {fileID: 8004078469791906701, guid: fdc0a60f03d34764c97c36bdb6c7fb33,
-        type: 3}
-      propertyPath: MinDistance
-      value: 3.8145301
-      objectReference: {fileID: 0}
-    - target: {fileID: 8004078469791906702, guid: fdc0a60f03d34764c97c36bdb6c7fb33,
-        type: 3}
-      propertyPath: vision
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8004078469791906703, guid: fdc0a60f03d34764c97c36bdb6c7fb33,
-        type: 3}
-      propertyPath: clips.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8004078469791906703, guid: fdc0a60f03d34764c97c36bdb6c7fb33,
-        type: 3}
-      propertyPath: clips.Array.data[1]
-      value: 
-      objectReference: {fileID: 8300000, guid: c7f6c1581e81dee47b5dac0472d6535b, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdc0a60f03d34764c97c36bdb6c7fb33, type: 3}
 --- !u!1 &98994778
@@ -3106,6 +3081,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 98994782, guid: 2405a571819dab44f887217897fa1779, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5241303932138019770, guid: 2405a571819dab44f887217897fa1779,
         type: 3}
       propertyPath: m_Color.r
@@ -3139,17 +3118,17 @@ PrefabInstance:
     - target: {fileID: 8078096114851346872, guid: 2405a571819dab44f887217897fa1779,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.3749717
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8078096114851346872, guid: 2405a571819dab44f887217897fa1779,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.08362494
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8078096114851346872, guid: 2405a571819dab44f887217897fa1779,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.7285156
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8078096114851346872, guid: 2405a571819dab44f887217897fa1779,
         type: 3}

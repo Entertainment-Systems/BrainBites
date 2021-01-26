@@ -35,7 +35,7 @@ public class EnemyAI : MonoBehaviour
         light2d.pointLightOuterRadius = viewRadius;
         light2d.pointLightInnerAngle = viewAngle;
         light2d.pointLightOuterAngle = viewAngle*2;
-        light2d.color = attribute.textColor;
+        //light2d.color = attribute.textColor;
 
 
         switch(enemyType)
