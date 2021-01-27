@@ -7,7 +7,10 @@ using UnityEngine.Experimental.Rendering.Universal;
 public class EnemyAI : MonoBehaviour
 {
     [SerializeField] private GameObject visionLight;
+    [SerializeField] private AudioClip deathSound;
+    [SerializeField] private Sprite curtain;
 
+    private GameObject levelManager;
     private Attributes attribute;
     private Rigidbody2D rb2D;
     private Light2D light2d;
@@ -24,6 +27,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Awake()
     {
+        levelManager = GameObject.Find("LevelManager");
         attribute = GetComponent<Attributes>();
         rb2D = GetComponent<Rigidbody2D>();
         light2d = visionLight.GetComponent<Light2D>();
@@ -81,7 +85,7 @@ public class EnemyAI : MonoBehaviour
                 if (!Physics2D.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
                 {
                     Destroy(targetsinViewRadius);
-                    killPlayer();
+                    StartCoroutine(killPlayer());
 
                 }
             }
@@ -147,8 +151,20 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    public void killPlayer()
+    public IEnumerator killPlayer()
     {
+
+        GameObject player = GameObject.Find("Parasite");
+        player.GetComponent<AudioSource>().PlayOneShot(deathSound);
+        player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+
+        yield return new WaitForSecondsRealtime(0.73f);
+
+        levelManager.GetComponent<Animator>().enabled = false;
+        levelManager.GetComponent<SpriteRenderer>().sprite = curtain;
+
+        yield return new WaitForSecondsRealtime(0.3f);
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Debug.Log("I see you motherfucker");
     }

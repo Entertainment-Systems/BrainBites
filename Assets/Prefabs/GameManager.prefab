@@ -287,8 +287,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4586343930280511378}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.4357395, y: -0.06687078, z: 7.498047}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8078096114402330033}
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_UseNormalMap: 1
   m_LightOrder: 0
   m_AlphaBlendOnOverlap: 0
-  m_ShadowIntensity: 1
+  m_ShadowIntensity: 0
   m_ShadowVolumeIntensity: 0
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
@@ -596,13 +596,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  infoTextbox: {fileID: 1436615238}
+  infoTextbox: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
   groundCheck: {fileID: 0}
   lm: {fileID: 8078096114417935606}
   haloLight: {fileID: 4586343930280511378}
+  lifeBarScalePoint: {fileID: 8956472379043099037}
+  healthLossRate: 10
 --- !u!1 &8078096114417935600
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,7 +653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f9032f4f6530dc48a20554401db2a60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemiesLeft: 0
+  enemiesLeft: 1
   finishedLevel: 0
   openDoor: {fileID: 8078096114151266073}
   closeDoor: {fileID: 8078096113765106768}

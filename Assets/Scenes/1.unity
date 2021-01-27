@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 122042952}
   - component: {fileID: 122042954}
   m_Layer: 0
-  m_Name: Audio Source
+  m_Name: Boombox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2131,6 +2131,18 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1033411653 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1436615238, guid: 2405a571819dab44f887217897fa1779,
+    type: 3}
+  m_PrefabInstance: {fileID: 1391914804623547574}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1136320559 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8004078469791906692, guid: fdc0a60f03d34764c97c36bdb6c7fb33,
@@ -2910,6 +2922,16 @@ PrefabInstance:
       propertyPath: groundCheck
       value: 
       objectReference: {fileID: 1848543330}
+    - target: {fileID: 8078096114402330032, guid: 2405a571819dab44f887217897fa1779,
+        type: 3}
+      propertyPath: infoTextbox
+      value: 
+      objectReference: {fileID: 1033411653}
+    - target: {fileID: 8078096114417935606, guid: 2405a571819dab44f887217897fa1779,
+        type: 3}
+      propertyPath: enemiesLeft
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8078096114851346872, guid: 2405a571819dab44f887217897fa1779,
         type: 3}
       propertyPath: m_LocalPosition.x
