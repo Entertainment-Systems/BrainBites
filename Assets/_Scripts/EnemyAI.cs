@@ -32,11 +32,11 @@ public class EnemyAI : MonoBehaviour
     private void Start()
     {
         viewRadius = attribute.vision;
+        Debug.Log("view Radius "+ viewRadius);
         light2d.pointLightOuterRadius = viewRadius;
         light2d.pointLightInnerAngle = viewAngle;
         light2d.pointLightOuterAngle = viewAngle*2;
-        //light2d.color = attribute.textColor;
-
+        light2d.color = attribute.textColor;
 
         switch(enemyType)
         {
@@ -68,6 +68,8 @@ public class EnemyAI : MonoBehaviour
 
     void FindVisibleTarget()
     {
+        Debug.Log("view Radius " + viewRadius);
+
         Collider2D targetsinViewRadius = Physics2D.OverlapCircle(transform.position, viewRadius, playerMask);
 
         if (targetsinViewRadius != null)
