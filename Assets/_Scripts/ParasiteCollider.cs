@@ -9,6 +9,7 @@ public class ParasiteCollider : MonoBehaviour
     public GameObject CollidedEnemy;
     [SerializeField] private AudioClip[] clips;
     [SerializeField] private LayerMask finishLayer;
+    [SerializeField] private GameObject lifeBar;
     private LevelManager lm;
 
     private void Start()
@@ -32,12 +33,14 @@ public class ParasiteCollider : MonoBehaviour
         if (collision.transform.gameObject.name == "OpenExit")
         {
             lm.nextLevel();
+            Destroy(gameObject);
         }
     }
 
     private void HideMe()
     {
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        lifeBar.SetActive(true);
         //gameObject.GetComponent<BoxCollider2D>().enabled = false;
         transform.position = new Vector3(0, -100, 0);
         GetComponent<AudioSource>().PlayOneShot(clips[0]);
@@ -47,6 +50,7 @@ public class ParasiteCollider : MonoBehaviour
 
     public void returnMe()
     {
+        lifeBar.SetActive(false);
         gameObject.GetComponent<SpriteRenderer>().enabled = true;
         //gameObject.GetComponent<BoxCollider2D>().enabled = true;
         if (CollidedEnemy != null)

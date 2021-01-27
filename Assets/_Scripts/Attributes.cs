@@ -9,7 +9,7 @@ public class Attributes : MonoBehaviour
     public float maxSpeed;
     public float jumpSpeed;
 
-    [Range(0, 10)]
+     [Range(0, 10)]
     public float vision;
     [Range(0, 3)]
     public float repeatRate = 2f;

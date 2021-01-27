@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -188,16 +188,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8004078469791906698, guid: fdc0a60f03d34764c97c36bdb6c7fb33,
+    - target: {fileID: 8004078469791906703, guid: fdc0a60f03d34764c97c36bdb6c7fb33,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: lifeBar
       value: 
-      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-    - target: {fileID: 8004078469791906702, guid: fdc0a60f03d34764c97c36bdb6c7fb33,
-        type: 3}
-      propertyPath: vision
-      value: 10
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1382068718}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdc0a60f03d34764c97c36bdb6c7fb33, type: 3}
 --- !u!1 &122042951
@@ -1385,8 +1380,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 2008138017
-  m_SortingLayer: 4
+  m_SortingLayerID: -82739059
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -7113479977989563460, guid: 1bb3a83653ab8584984a3dbe6fcb055b,
     type: 3}
@@ -2718,6 +2713,12 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &1382068718 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8426078128140438238, guid: 2405a571819dab44f887217897fa1779,
+    type: 3}
+  m_PrefabInstance: {fileID: 1391914804623547574}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1848543330 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8004078469407873665, guid: fdc0a60f03d34764c97c36bdb6c7fb33,
@@ -2858,8 +2859,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 2008138017
-  m_SortingLayer: 4
+  m_SortingLayerID: -82739059
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7908859509845356740, guid: 1bb3a83653ab8584984a3dbe6fcb055b,
     type: 3}
@@ -2894,6 +2895,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5241303932138019770, guid: 2405a571819dab44f887217897fa1779,
+        type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8078096114402330032, guid: 2405a571819dab44f887217897fa1779,
         type: 3}
       propertyPath: player
@@ -2963,6 +2969,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8426078128140438238, guid: 2405a571819dab44f887217897fa1779,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2405a571819dab44f887217897fa1779, type: 3}

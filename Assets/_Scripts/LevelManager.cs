@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] GameObject openDoor;
     [SerializeField] GameObject closeDoor;
     [SerializeField] AudioClip openSound;
+    [SerializeField] AudioClip closeSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +29,9 @@ public class LevelManager : MonoBehaviour
     public void nextLevel()
     {
         transition.SetBool("fadeOut", true);
+        GetComponent<AudioSource>().PlayOneShot(closeSound);
+        closeDoor.SetActive(true);
+        openDoor.SetActive(false);
     }
 
     public void unlockExit()

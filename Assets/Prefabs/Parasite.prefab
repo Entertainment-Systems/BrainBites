@@ -185,6 +185,7 @@ MonoBehaviour:
   finishLayer:
     serializedVersion: 2
     m_Bits: 0
+  lifeBar: {fileID: 0}
 --- !u!114 &8004078469791906702
 MonoBehaviour:
   m_ObjectHideFlags: 0
