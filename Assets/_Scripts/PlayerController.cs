@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour
     {
         infoTextbox.SetText(
             "<#" + ColorUtility.ToHtmlStringRGB(attribute.textColor) + ">"
-            + "<size=48><u><b><i>" + attribute.targetName + "</size=48></u></b></i></color>"
+            + "<size=38><u><b><i>" + attribute.targetName + "</size=38></u></b></i></color>"
             + "<br>" +
             attribute.description);
     }
