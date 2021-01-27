@@ -74,22 +74,16 @@ public class PlayerController : MonoBehaviour
 
             light2d.pointLightOuterRadius = TargetVision;
 
-        if (direction.x < 0 && player.transform.rotation.eulerAngles == new Vector3(0, 0, 0)
-            || direction.x > 0 && player.transform.rotation.eulerAngles == new Vector3(0, 180, 0))
-            player.transform.Rotate(new Vector3(0, 180, 0));
-
+            if (direction.x < 0)
+                player.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+            else if(direction.x > 0)
+                player.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
 
             if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow)) && Mathf.Abs(rb2D.velocity.x) > 0.1)
                 health -= healthLossRate * Time.deltaTime;
 
             grounded = Physics2D.OverlapCircle(groundCheck.position, 0.08f, groundLayer);
 
-        //if (Input.GetKeyDown(KeyCode.Z) && grounded)
-        //{
-        //    rb2D.velocity = new Vector2(rb2D.velocity.x, attribute.jumpSpeed);
-        //    health -= 25;
-        //}
-        //rb2D.AddForce(new Vector2(0, attribute.jumpSpeed), ForceMode2D.Impulse);
 
             if (rb2D.velocity.y < 1)
                 rb2D.gravityScale = 3;
