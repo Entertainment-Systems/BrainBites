@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     {
         light2d = haloLight.GetComponent<Light2D>();
         GetPlayerBody();
+        InvokeRepeating("takeDamage", 0.5f, attribute.DeathSpeed);
         
     }
 
@@ -52,6 +53,12 @@ public class PlayerController : MonoBehaviour
                 GetPlayerBody();
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Z) && grounded)
+        {
+            rb2D.velocity = new Vector2(rb2D.velocity.x, attribute.jumpSpeed);
+            health -= 25;
+        }
     }
 
     /// <summary>
@@ -67,28 +74,22 @@ public class PlayerController : MonoBehaviour
 
             light2d.pointLightOuterRadius = TargetVision;
 
-            if (direction.x < 0 && facingRight == true)
-            {
-                player.transform.Rotate(new Vector3(0, 180, 0));
-                facingRight = false;
-            }
-            else if (direction.x > 0 && facingRight == false)
-            {
-                player.transform.Rotate(new Vector3(0, 180, 0));
-                facingRight = true;
-            }
+        if (direction.x < 0 && player.transform.rotation.eulerAngles == new Vector3(0, 0, 0)
+            || direction.x > 0 && player.transform.rotation.eulerAngles == new Vector3(0, 180, 0))
+            player.transform.Rotate(new Vector3(0, 180, 0));
+
 
             if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow)) && Mathf.Abs(rb2D.velocity.x) > 0.1)
                 health -= healthLossRate * Time.deltaTime;
 
             grounded = Physics2D.OverlapCircle(groundCheck.position, 0.08f, groundLayer);
 
-            if (Input.GetKey(KeyCode.Z) && grounded)
-            {
-                rb2D.velocity = new Vector2(rb2D.velocity.x, attribute.jumpSpeed);
-                health -= 25;
-            }
-            //rb2D.AddForce(new Vector2(0, attribute.jumpSpeed), ForceMode2D.Impulse);
+        //if (Input.GetKeyDown(KeyCode.Z) && grounded)
+        //{
+        //    rb2D.velocity = new Vector2(rb2D.velocity.x, attribute.jumpSpeed);
+        //    health -= 25;
+        //}
+        //rb2D.AddForce(new Vector2(0, attribute.jumpSpeed), ForceMode2D.Impulse);
 
             if (rb2D.velocity.y < 1)
                 rb2D.gravityScale = 3;
@@ -97,7 +98,7 @@ public class PlayerController : MonoBehaviour
 
             lifeBarScalePoint.localScale = new Vector3(health / 10, 1, 1);
 
-            if ((Input.GetKey(KeyCode.X) && player.tag == "Enemy") || health <= 0 && isEnemy)
+        if ((Input.GetKey(KeyCode.X) && player.tag == "Enemy") || health <= 0 && isEnemy)
             {
                 ReturnToParasite();
             }
