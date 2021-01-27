@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private TextMeshProUGUI infoTextbox;
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private Transform groundCheck;
+    private Transform groundCheck;
     [SerializeField] private LevelManager lm;
     [SerializeField] private GameObject haloLight;
     [SerializeField] private Transform lifeBarScalePoint;
@@ -29,13 +29,13 @@ public class PlayerController : MonoBehaviour
     {
         light2d = haloLight.GetComponent<Light2D>();
         GetPlayerBody();
-        InvokeRepeating("takeDamage", 0.5f, attribute.DeathSpeed);
         
     }
 
     private void Update()
     {
-        haloLight.transform.position = player.transform.position;
+        if(haloLight !=null && player !=null) 
+            haloLight.transform.position = player.transform.position;
         if (parasite != null)
         {
             if( player.gameObject.GetComponent<ParasiteCollider>().CollidedToEnemy)
@@ -61,44 +61,47 @@ public class PlayerController : MonoBehaviour
     {
         //Controls
         Vector2 direction = new Vector2(Input.GetAxis("Horizontal"), 0);
-        rb2D.velocity = new Vector2(attribute.speed * direction.x, rb2D.velocity.y);
-
-        light2d.pointLightOuterRadius = TargetVision;
-
-        if (direction.x < 0 && facingRight == true)
+        if (rb2D != null)
         {
+            rb2D.velocity = new Vector2(attribute.speed * direction.x, rb2D.velocity.y);
+
+            light2d.pointLightOuterRadius = TargetVision;
+
+            if (direction.x < 0 && facingRight == true)
+            {
                 player.transform.Rotate(new Vector3(0, 180, 0));
                 facingRight = false;
-        }
-        else if (direction.x > 0 && facingRight == false)
-        {
+            }
+            else if (direction.x > 0 && facingRight == false)
+            {
                 player.transform.Rotate(new Vector3(0, 180, 0));
                 facingRight = true;
-        }
+            }
 
-        if((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow)) && Mathf.Abs(rb2D.velocity.x)>0.1)
-            health -= healthLossRate * Time.deltaTime;
+            if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow)) && Mathf.Abs(rb2D.velocity.x) > 0.1)
+                health -= healthLossRate * Time.deltaTime;
 
-        grounded = Physics2D.OverlapCircle(groundCheck.position, 0.08f, groundLayer);
+            grounded = Physics2D.OverlapCircle(groundCheck.position, 0.08f, groundLayer);
 
-        if (Input.GetKey(KeyCode.Z) && grounded)
-        {
-            rb2D.velocity = new Vector2(rb2D.velocity.x, attribute.jumpSpeed);
-            health -= 25;
-        }
-        //rb2D.AddForce(new Vector2(0, attribute.jumpSpeed), ForceMode2D.Impulse);
+            if (Input.GetKey(KeyCode.Z) && grounded)
+            {
+                rb2D.velocity = new Vector2(rb2D.velocity.x, attribute.jumpSpeed);
+                health -= 25;
+            }
+            //rb2D.AddForce(new Vector2(0, attribute.jumpSpeed), ForceMode2D.Impulse);
 
-        if (rb2D.velocity.y < 1)
-            rb2D.gravityScale = 3;
-        else
-            rb2D.gravityScale = 1;
+            if (rb2D.velocity.y < 1)
+                rb2D.gravityScale = 3;
+            else
+                rb2D.gravityScale = 1;
 
-        lifeBarScalePoint.localScale = new Vector3(health / 10, 1, 1);
+            lifeBarScalePoint.localScale = new Vector3(health / 10, 1, 1);
 
-        if ((Input.GetKey(KeyCode.X) && player.tag == "Enemy") || health <= 0)
+            if ((Input.GetKey(KeyCode.X) && player.tag == "Enemy") || health <= 0 && isEnemy)
             {
                 ReturnToParasite();
             }
+        }
     }
 
     /// <summary>
@@ -129,7 +132,8 @@ public class PlayerController : MonoBehaviour
             parasite = null;
         }
 
-        
+        InvokeRepeating("takeDamage", 0.5f, attribute.DeathSpeed);
+
         UpdateText();
     }
 
@@ -161,9 +165,11 @@ public class PlayerController : MonoBehaviour
             TargetVision -= 0.1f;
     }
 
+/*
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(groundCheck.position, 0.08f);
     }
+*/
 }
