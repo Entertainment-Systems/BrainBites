@@ -9,14 +9,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI infoTextbox;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform groundCheck;
+    [SerializeField] private LevelManager lm;
     [SerializeField] private GameObject haloLight;
+    [SerializeField] private Transform lifeBarScalePoint;
+    [SerializeField] private float healthLossRate;
 
     private Light2D light2d;
     private Rigidbody2D rb2D;
     private ParasiteCollider parasite;
     private Attributes attribute;
+    private float health;
     private bool facingRight = true;
     private bool grounded = true;
+    private bool isEnemy = false;
 
     private float TargetVision;
 
@@ -62,20 +67,25 @@ public class PlayerController : MonoBehaviour
 
         if (direction.x < 0 && facingRight == true)
         {
-            player.transform.Rotate(new Vector3(0, 180, 0));
-            facingRight = false;
-
+                player.transform.Rotate(new Vector3(0, 180, 0));
+                facingRight = false;
         }
         else if (direction.x > 0 && facingRight == false)
         {
-            player.transform.Rotate(new Vector3(0, 180, 0));
-            facingRight = true;
+                player.transform.Rotate(new Vector3(0, 180, 0));
+                facingRight = true;
         }
+
+        if((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow)) && Mathf.Abs(rb2D.velocity.x)>0.1)
+            health -= healthLossRate * Time.deltaTime;
 
         grounded = Physics2D.OverlapCircle(groundCheck.position, 0.08f, groundLayer);
 
         if (Input.GetKey(KeyCode.Z) && grounded)
+        {
             rb2D.velocity = new Vector2(rb2D.velocity.x, attribute.jumpSpeed);
+            health -= 25;
+        }
         //rb2D.AddForce(new Vector2(0, attribute.jumpSpeed), ForceMode2D.Impulse);
 
         if (rb2D.velocity.y < 1)
@@ -83,8 +93,9 @@ public class PlayerController : MonoBehaviour
         else
             rb2D.gravityScale = 1;
 
+        lifeBarScalePoint.localScale = new Vector3(health / 10, 1, 1);
 
-        if (Input.GetKey(KeyCode.X) && player.tag == "Enemy")
+        if ((Input.GetKey(KeyCode.X) && player.tag == "Enemy") || health <= 0)
             {
                 ReturnToParasite();
             }
@@ -95,6 +106,11 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void GetPlayerBody()
     {
+        if(player.name != "Parasite") { 
+            isEnemy = true;
+            health = 100;
+        }
+        else { isEnemy = false; }
         groundCheck = player.transform.GetChild(0);
         rb2D = player.GetComponent<Rigidbody2D>();
         attribute = player.GetComponent<Attributes>();
@@ -125,6 +141,9 @@ public class PlayerController : MonoBehaviour
         //Debug.Log("we running");
         player = GameObject.FindGameObjectWithTag("Player");
         GetPlayerBody();
+        lm.enemiesLeft--;
+        if (lm.enemiesLeft == 0)
+            lm.unlockExit();
     }
 
     private void UpdateText()
