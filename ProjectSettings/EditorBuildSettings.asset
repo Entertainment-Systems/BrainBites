@@ -16,8 +16,17 @@ EditorBuildSettings:
     guid: 7cf30b9d213066540ac40c7a115b4e9e
   - enabled: 1
     path: Assets/Scenes/4.unity
-    guid: dd4400a778bdfeb499b78355dca9f401
+    guid: 258a9a70c73e07d40bcd1b0fdf1f5a41
   - enabled: 1
-    path: Assets/Scenes/climb.unity
-    guid: b28019c5d2641a1439699857fa71cb07
+    path: Assets/Scenes/5.unity
+    guid: 345fff5c2bc65564bab9b7a4f1159535
+  - enabled: 1
+    path: Assets/Scenes/6.unity
+    guid: 7cdfc1704d7028e4e99c0e0465260bbe
+  - enabled: 1
+    path: Assets/Scenes/7.unity
+    guid: feba658b90935c94daa7029d071b7132
+  - enabled: 1
+    path: Assets/Scenes/8.unity
+    guid: b850d5b08ba768d488aa9acd9e364361
   m_configObjects: {}

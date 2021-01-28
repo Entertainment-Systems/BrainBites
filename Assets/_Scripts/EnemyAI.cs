@@ -79,8 +79,8 @@ public class EnemyAI : MonoBehaviour
                 light2d.transform.rotation = Quaternion.Euler(0, 0, -180);
                 break;
             case LookDir.right:
-                LookVector = transform.right;
-                light2d.transform.rotation = Quaternion.Euler(0, 0, 90);
+               // LookVector = transform.right;
+                //light2d.transform.rotation = Quaternion.Euler(0, 0, 90);
                 break;
             default:
                 LookVector = transform.right;
@@ -120,7 +120,7 @@ public class EnemyAI : MonoBehaviour
             //    }
             //}
 
-            if (Vector2.Angle(LookVector, dirToTarget) < viewAngle / 2)
+            if (Vector2.Angle(transform.right, dirToTarget) < viewAngle / 2)
             {
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
                 if (!Physics2D.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
