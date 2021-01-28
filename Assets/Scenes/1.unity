@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -192,6 +192,21 @@ PrefabInstance:
         type: 3}
       propertyPath: DeathSpeed
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8004078469791906702, guid: fdc0a60f03d34764c97c36bdb6c7fb33,
+        type: 3}
+      propertyPath: description
+      value: to move
+      objectReference: {fileID: 0}
+    - target: {fileID: 8004078469791906702, guid: fdc0a60f03d34764c97c36bdb6c7fb33,
+        type: 3}
+      propertyPath: targetName
+      value: arrow keys
+      objectReference: {fileID: 0}
+    - target: {fileID: 8004078469791906702, guid: fdc0a60f03d34764c97c36bdb6c7fb33,
+        type: 3}
+      propertyPath: textColor.rgba
+      value: 5025062
       objectReference: {fileID: 0}
     - target: {fileID: 8004078469791906703, guid: fdc0a60f03d34764c97c36bdb6c7fb33,
         type: 3}
@@ -1996,6 +2011,18 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1127295509 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6337836858634455396, guid: 2405a571819dab44f887217897fa1779,
+    type: 3}
+  m_PrefabInstance: {fileID: 1391914804623547574}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1136320559 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8004078469791906692, guid: fdc0a60f03d34764c97c36bdb6c7fb33,
@@ -2657,6 +2684,11 @@ PrefabInstance:
       propertyPath: m_ApplyToSortingLayers.Array.size
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6337836858634455396, guid: 2405a571819dab44f887217897fa1779,
+        type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8078096114402330032, guid: 2405a571819dab44f887217897fa1779,
         type: 3}
       propertyPath: player
@@ -2671,7 +2703,7 @@ PrefabInstance:
         type: 3}
       propertyPath: infoTextbox
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1127295509}
     - target: {fileID: 8078096114417935606, guid: 2405a571819dab44f887217897fa1779,
         type: 3}
       propertyPath: enemiesLeft
