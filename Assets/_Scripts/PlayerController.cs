@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Experimental.Rendering.Universal;
+using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private GameObject player;
@@ -59,6 +60,9 @@ public class PlayerController : MonoBehaviour
             rb2D.velocity = new Vector2(rb2D.velocity.x, attribute.jumpSpeed);
             health -= 25;
         }
+
+        if (Input.GetKeyDown(KeyCode.R))
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     /// <summary>

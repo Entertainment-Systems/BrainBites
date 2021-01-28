@@ -14,6 +14,7 @@ public class EnemyAI : MonoBehaviour
     private Attributes attribute;
     private Rigidbody2D rb2D;
     private Light2D light2d;
+    private bool lookForPlayer = true;
 
     [System.NonSerialized]
     public float viewRadius;
@@ -22,8 +23,12 @@ public class EnemyAI : MonoBehaviour
     public LayerMask playerMask;
     public LayerMask obstacleMask;
 
-    private enum EnemyType { blind, badLegs, spin, speen, noMovement}
+    private enum EnemyType { blind, badLegs, spin, speen, noMovement, flash }
     [SerializeField] private EnemyType enemyType;
+
+    private enum LookDir { right, up, down }
+    [SerializeField] private LookDir lookDir;
+    private Vector3 LookVector;
 
     private void Awake()
     {
@@ -50,6 +55,9 @@ public class EnemyAI : MonoBehaviour
             case EnemyType.badLegs:
                 StartCoroutine(BadLegsMovement(attribute.repeatRate));
                 break;
+            case EnemyType.flash:
+                StartCoroutine(FlashMovement(attribute.repeatRate));
+                break;
             case EnemyType.spin:
                 StartCoroutine(SpinMovement(attribute.repeatRate));
                 break;
@@ -57,6 +65,26 @@ public class EnemyAI : MonoBehaviour
                 StartCoroutine(SpeenMovement(attribute.repeatRate));
                 break;
             default:
+                break;
+        }
+
+        switch (lookDir)
+        {
+            case LookDir.up:
+                LookVector = transform.up;
+                light2d.transform.rotation = Quaternion.Euler(0, 0, 0);
+                break;
+            case LookDir.down:
+                LookVector = -transform.up;
+                light2d.transform.rotation = Quaternion.Euler(0, 0, -180);
+                break;
+            case LookDir.right:
+                LookVector = transform.right;
+                light2d.transform.rotation = Quaternion.Euler(0, 0, 90);
+                break;
+            default:
+                LookVector = transform.right;
+                light2d.transform.rotation = Quaternion.Euler(0, 0, -90);
                 break;
         }
     }
@@ -81,14 +109,27 @@ public class EnemyAI : MonoBehaviour
             Transform target = targetsinViewRadius.transform;
             Vector3 dirToTarget = (target.position - transform.position).normalized;
 
-            if (Vector2.Angle(transform.right, dirToTarget) < viewAngle / 2)
+            //if (Vector2.Angle(transform.right, dirToTarget) < viewAngle / 2)
+            //{
+            //    float dstToTarget = Vector3.Distance(transform.position, target.position);
+            //    if (!Physics2D.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
+            //    {
+            //        Destroy(targetsinViewRadius);
+            //        StartCoroutine(killPlayer());
+
+            //    }
+            //}
+
+            if (Vector2.Angle(LookVector, dirToTarget) < viewAngle / 2)
             {
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
                 if (!Physics2D.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
                 {
-                    Destroy(targetsinViewRadius);
-                    StartCoroutine(killPlayer());
-
+                    if (lookForPlayer)
+                    {
+                        Destroy(targetsinViewRadius);
+                        StartCoroutine(killPlayer());
+                    }
                 }
             }
         }
@@ -130,6 +171,22 @@ public class EnemyAI : MonoBehaviour
             transform.Rotate(new Vector3(0, 180, 0));
 
             yield return new WaitForSeconds(waitTime);
+        }
+    }
+
+    private IEnumerator FlashMovement(float waitTime)
+    {
+        while (true)
+        {
+            light2d.enabled = false;
+            lookForPlayer = false;
+
+            yield return new WaitForSeconds(waitTime/2);
+
+            light2d.enabled = true;
+            lookForPlayer = true;
+
+            yield return new WaitForSeconds(waitTime / 2);
         }
     }
 
