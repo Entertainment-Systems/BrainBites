@@ -34,6 +34,13 @@ public class LevelManager : MonoBehaviour
         openDoor.SetActive(false);
     }
 
+    public void lockDoor()
+    {
+        GetComponent<AudioSource>().PlayOneShot(closeSound);
+        closeDoor.SetActive(true);
+        openDoor.SetActive(false);
+    }
+
     public void unlockExit()
     {
         GetComponent<AudioSource>().PlayOneShot(openSound);
