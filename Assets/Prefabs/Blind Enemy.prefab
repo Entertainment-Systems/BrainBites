@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 375891835823262272}
   - component: {fileID: 1876314178358552987}
   - component: {fileID: 375891835823262275}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Blind Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -192,6 +192,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   enemyType: 4
+  lookDir: 0
 --- !u!114 &375891835823262275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,7 +225,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 375891837013227412}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FloorCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +256,7 @@ GameObject:
   m_Component:
   - component: {fileID: 595949230230236678}
   - component: {fileID: 8011776566511509811}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}

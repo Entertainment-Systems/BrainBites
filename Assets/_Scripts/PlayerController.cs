@@ -48,9 +48,13 @@ public class PlayerController : MonoBehaviour
                 if (player.gameObject.GetComponent<EnemyAI>() != null)
                 {
                     Destroy(player.gameObject.GetComponent<EnemyAI>());
-                    Destroy(player.gameObject.GetComponentInChildren<Light2D>());
+
+                    foreach (Transform child in player.transform)
+                    {
+                        if(child.name != "FloorCheck")
+                            Destroy(child.gameObject);
+                    }
                 }
-                    
                 GetPlayerBody();
             }
         }
