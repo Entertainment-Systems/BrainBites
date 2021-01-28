@@ -254,6 +254,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visionLight: {fileID: 500082840733724195}
+  deathSound: {fileID: 8300000, guid: 1a57622b1ed9a7e44b8ba476f21d65d7, type: 3}
+  curtain: {fileID: 2460449140604103120, guid: 4163548bf187272499af738a5af2366f, type: 3}
   viewAngle: 45
   playerMask:
     serializedVersion: 2

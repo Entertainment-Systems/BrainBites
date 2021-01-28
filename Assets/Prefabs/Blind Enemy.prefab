@@ -182,6 +182,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visionLight: {fileID: 8028686399824852381}
+  deathSound: {fileID: 8300000, guid: 1a57622b1ed9a7e44b8ba476f21d65d7, type: 3}
+  curtain: {fileID: 2460449140604103120, guid: 4163548bf187272499af738a5af2366f, type: 3}
   viewAngle: 80
   playerMask:
     serializedVersion: 2
@@ -189,7 +191,7 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 256
-  enemyType: 0
+  enemyType: 4
 --- !u!114 &375891835823262275
 MonoBehaviour:
   m_ObjectHideFlags: 0
