@@ -130,9 +130,6 @@ public class PlayerController : MonoBehaviour
         {
             parasite = null;
         }
-
-        InvokeRepeating("takeDamage", 0.5f, attribute.DeathSpeed);
-
         UpdateText();
     }
 
