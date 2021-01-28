@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1260,8 +1260,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -82739059
-  m_SortingLayer: 1
+  m_SortingLayerID: 2008138017
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -7113479977989563460, guid: 1bb3a83653ab8584984a3dbe6fcb055b,
     type: 3}
@@ -2643,8 +2643,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -82739059
-  m_SortingLayer: 1
+  m_SortingLayerID: 2008138017
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 7908859509845356740, guid: 1bb3a83653ab8584984a3dbe6fcb055b,
     type: 3}
