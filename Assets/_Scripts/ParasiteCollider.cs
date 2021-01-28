@@ -10,6 +10,7 @@ public class ParasiteCollider : MonoBehaviour
     [SerializeField] private AudioClip[] clips;
     [SerializeField] private LayerMask finishLayer;
     [SerializeField] private GameObject lifeBar;
+    [SerializeField] private bool endgame = false;
     private LevelManager lm;
 
     private void Start()
@@ -32,9 +33,39 @@ public class ParasiteCollider : MonoBehaviour
     {
         if (collision.transform.gameObject.name == "OpenExit")
         {
-            lm.nextLevel();
-            Destroy(gameObject);
+            if (!endgame)
+            {
+                lm.nextLevel();
+                Destroy(gameObject);
+            }
+            else
+            {
+                Destroy(GameObject.Find("Canvas"));
+                GameObject.Find("Main Camera").GetComponent<Animator>().enabled = true;
+                lm.lockDoor();
+                StartCoroutine(fadeMusic(GameObject.Find("Boombox").GetComponent<AudioSource>(), 2f));
+            }
         }
+    }
+
+    IEnumerator fadeMusic(AudioSource audioSource, float FadeTime)
+    {
+        float startVolume = audioSource.volume;
+
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+
+            yield return null;
+        }
+
+        Destroy(audioSource.gameObject);
+
+        yield return new WaitForSecondsRealtime(5);
+
+        SceneManager.LoadSceneAsync(0);
+
+        //audioSource.volume = startVolume;
     }
 
     private void HideMe()
