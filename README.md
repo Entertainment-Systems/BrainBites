@@ -1,5 +1,5 @@
 ## About
-BrainBites is a game made by Ciaran Malone and Evan McConnell as a submission to the [Weekly Game Jam #185](https://itch.io/jam/weekly-game-jam-185).
+BrainBites is a game made by [Ciaran Malone](https://github.com/ciaranmalone)  and [Evan McConnell](https://github.com/EvanMcConnell) as a submission to the [Weekly Game Jam #185](https://itch.io/jam/weekly-game-jam-185).
 
 You play as a small parasite aboard an oil rig. The objective of each level is to elimate all the enemies without being spotted. Coming into contact with an enemy will allow to take over that host and go undetected by other enemies. You can jump a limited number of times before the host dies.
 
